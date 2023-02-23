@@ -13,7 +13,7 @@ app.use(express.json());
 
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
-app.post('/register', Auth, resgister);
+app.post('/register', resgister);
 
 const port = process.env.PORT || 3333;
 const server = app.listen(port, () => {
