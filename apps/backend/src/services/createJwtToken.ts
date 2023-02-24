@@ -2,10 +2,13 @@ import * as jose from 'jose'
 
 export const createJwtToken = async (payload) => {
 
-    const secret = new TextEncoder().encode(
-        'cc7e0d44fd473002f1c42167459001140ec6389b7353f8088f4d9a95f2f596f2',
-    )
-    const alg = 'HS256'
+    const config = {
+        secret: process.env["JWT_TOKEN_SECRET"] as string
+      }
+      const secret = new TextEncoder().encode(
+        `${config.secret}`
+      )
+        const alg = 'HS256'
 
     const jwt = await new jose.SignJWT(payload)
     .setProtectedHeader({ alg })
