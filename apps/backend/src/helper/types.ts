@@ -29,3 +29,18 @@ export interface IUserObjectDB extends IUserObject {
 export interface ISendFriendRequestParams {
   user_id: string;
 }
+
+export interface IAcceptRequestParams {
+  request_id: string;
+  requested_by_user_id: string
+}
+
+export interface IRejectRequestParams {
+  request_id: string;
+}
+
+export enum InvitationStatus {
+  accepted = "ACCEPTED",
+  rejected = "REJECTED",
+  pending = "PENDING"
+}
