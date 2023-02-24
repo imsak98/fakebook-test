@@ -19,8 +19,8 @@ app.post('/login', login); // api for login
 app.post('/getAllUsers', Auth, getAllUsers); // api for getting all the user. This will be called in getting all the users to send friend request
 app.post('/friendRequests', Auth, friendRequests); // api for sending friend request to the user
 app.post('/sendFriendRequest', Auth, sendFriendRequest); // api for sending friend request to the user
-app.post('/acceptFriendRequest', Auth, acceptRequest); // api for sending friend request to the user
-app.post('/rejectFriendRequest', Auth, rejectRequest); // api for sending friend request to the user
+app.post('/acceptFriendRequest', Auth, acceptRequest); // api for accepting friend request to the user
+app.post('/rejectFriendRequest', Auth, rejectRequest); // api for rejecting friend request to the user
 
 
 const port = process.env.PORT || 3333;
