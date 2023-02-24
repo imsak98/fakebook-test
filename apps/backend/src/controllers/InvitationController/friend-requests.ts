@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { InvitationStatus } from "../../helper/types";
 import { dbclient } from "../../services/dbclient";
 
 export const friendRequests = async (req:Request, res:Response) => {
@@ -14,7 +15,7 @@ export const friendRequests = async (req:Request, res:Response) => {
     friend_invitaions.created_at as requested_at
     FROM friend_invitaions
     JOIN users on users.id = friend_invitaions.user_id 
-    WHERE friend_invitaions.friend_id = "${user_id}";`
+    WHERE friend_invitaions.friend_id = "${user_id}" AND friend_invitaions.status = "${InvitationStatus.pending}";`
     client.query(getAllFreindRequestQuery, (err, rows) => {
         if (err) return res.status(400).send(err);
 
