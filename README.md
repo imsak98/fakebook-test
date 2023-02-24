@@ -29,3 +29,154 @@ goto http://localhost:3333/migrate first time to migrate all the schemas to the 
 ## Using Makefile
 Run `make build-deploy` to create the docker containers and volumes 
 Run `make delete` to delete the docker containers and volumes 
+
+## API DOCS
+
+****************************************************************************************************************
+API : Register
+Link : http://localhost:3333/register
+Method : POST
+Params : 
+{
+	"name": "Test",
+	"display_name": "Test",
+	"email": "Test@test.com",
+	"password": "Test@Password",
+	"contact_no": "9988776655"	
+}
+Response :
+{
+	"message": "user has been registered! Please login again to continue",
+	"user": {
+		"id": "035cb175-0ab8-45bf-876f-97e95d322e2b",
+		"active": true,
+		"contact_no": "9988776655",
+		"created_at": "1677240500191",
+		"display_name": "Test",
+		"email": "Test@test.com"
+	}
+}
+
+****************************************************************************************************************
+
+****************************************************************************************************************
+API : Login
+Link : http://localhost:3333/login
+Method : POST
+Params : 
+{
+	"email": "Test@test.com",
+	"password": "Test@Password"
+}
+Response :
+{
+	"message": "Login success",
+	"token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjp7ImlkIjoiMDM1Y2IxNzUtMGFiOC00NWJmLTg3NmYtOTdlOTVkMzIyZTJiIiwibmFtZSI6IlRlc3QiLCJkaXNwbGF5X25hbWUiOiJUZXN0IiwiZW1haWwiOiJUZXN0QHRlc3QuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkeDh0dDZabFBmeElUQmYyZGJkMHJTT3MuajNuRjc0Q2JUY0YyUWxmQkR1SmNVLnNUOW5iVTYiLCJjb250YWN0X25vIjoiOTk4ODc3NjY1NSIsImNyZWF0ZWRfYXQiOiIyMDIzLTAyLTI0VDA2OjM4OjIwLjAwMFoiLCJhY3RpdmUiOjF9LCJpYXQiOjE2NzcyNDA1OTksImlzcyI6ImFkbWluIiwiYXVkIjoiYWRtaW4iLCJleHAiOjE2NzcyNDc3OTl9.0LVZkDibaRGM48MYkeU6hKpgX-wc0piwX21UIqiNZTM",
+	"user": {
+		"id": "035cb175-0ab8-45bf-876f-97e95d322e2b",
+		"name": "Test",
+		"display_name": "Test",
+		"email": "Test@test.com",
+		"contact_no": "9988776655",
+		"created_at": "2023-02-24T06:38:20.000Z",
+		"active": 1
+	}
+}
+****************************************************************************************************************
+
+
+****************************************************************************************************************
+API : Get All Users
+Link : http://localhost:3333/getAllUsers
+Method : POST
+Headers:
+Authorization = Bearer {jwtToken}
+Params : none
+Response :
+{
+	"users": [
+		{
+			"id": "bbc330a9-6399-4c11-9e3c-8ba109bc93f1",
+			"name": "Test2",
+			"display_name": "Test2",
+			"email": "Test2@test.com",
+			"contact_no": "8899776655",
+			"created_at": "2023-02-24T06:43:24.000Z"
+		}
+	]
+}
+****************************************************************************************************************
+
+****************************************************************************************************************
+API : Send Friend Request
+Link : http://localhost:3333/sendFriendRequest
+Method : POST
+Headers:
+Authorization = Bearer {jwtToken}
+Params : 
+{
+	"user_id": "bbc330a9-6399-4c11-9e3c-8ba109bc93f1"
+}
+Response :
+{
+	"message": "Friend request has been send",
+	"request_id": "0f04e15d-dd65-47e3-9785-165c361069db"
+}
+****************************************************************************************************************
+
+****************************************************************************************************************
+API : List Friend Request 
+Link : http://localhost:3333/friendRequests
+Method : POST
+Headers:
+Authorization = Bearer {jwtToken}
+Params : none
+Response :
+{
+	"requestsList": [
+		{
+			"request_id": "0f04e15d-dd65-47e3-9785-165c361069db",
+			"user_id": "035cb175-0ab8-45bf-876f-97e95d322e2b",
+			"request_status": "PENDING",
+			"name": "Test",
+			"display_name": "Test",
+			"email": "Test@test.com",
+			"contact_no": "9988776655",
+			"requested_at": "2023-02-24T06:46:53.000Z"
+		}
+	]
+}
+****************************************************************************************************************
+
+****************************************************************************************************************
+API : Accept Friend Request 
+Link : http://localhost:3333/acceptFriendRequest
+Method : POST
+Headers:
+Authorization = Bearer {jwtToken}
+Params : 
+{
+	"request_id": "0f04e15d-dd65-47e3-9785-165c361069db",
+	"requested_by_user_id": "035cb175-0ab8-45bf-876f-97e95d322e2b"
+}
+Response :
+{
+	"message": "Request has been accepted"
+}
+****************************************************************************************************************
+
+****************************************************************************************************************
+API : Reject Friend Request 
+Link : http://localhost:3333/rejectFriendRequest
+Method : POST
+Headers:
+Authorization = Bearer {jwtToken}
+Params : 
+{
+	"request_id": "0f04e15d-dd65-47e3-9785-165c361069db"
+}
+Response :
+{
+	"message": "Request has been rejected"
+}
+****************************************************************************************************************
