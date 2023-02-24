@@ -6,7 +6,7 @@ export const Auth = async (req:Request, res:Response, next:NextFunction) => {
     
     if(authHeader){
         const token = authHeader.split(' ')[1];
-        console.log(token);
+        // console.log(token);
         const {payload , protectedHeader, code:err} = await verifyJwtToken(token)
         if(err) return res.status(401).send({error: "Invalid token"})
         if(payload){
