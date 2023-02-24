@@ -12,8 +12,8 @@ export const createJwtToken = async (payload) => {
     .setIssuedAt()
     .setIssuer('admin')
     .setAudience('admin')
-    .setExpirationTime('15s')
+    .setExpirationTime('2h')
     .sign(secret)
-    // console.log(jwt);
+    console.log(jwt);
     return jwt
 }
