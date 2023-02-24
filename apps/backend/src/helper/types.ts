@@ -25,3 +25,7 @@ export interface IUserObject {
 export interface IUserObjectDB extends IUserObject {
   password: string;
 }
+
+export interface ISendFriendRequestParams {
+  user_id: string;
+}

@@ -5,6 +5,7 @@
 
 import express from 'express';
 import * as path from 'path';
+import { sendFriendRequest } from './controllers/InvitationController';
 import { getAllUsers, login, resgister } from './controllers/UserController';
 import { Auth } from './middlewares/Auth';
 
@@ -16,6 +17,8 @@ app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.post('/register', resgister); // api for registraion
 app.post('/login', login); // api for login
 app.post('/getAllUsers', Auth, getAllUsers); // api for getting all the user. This will be called in getting all the users to send friend request
+app.post('/sendFriendRequest', Auth, sendFriendRequest); // api for sending friend request to the user
+
 
 
 const port = process.env.PORT || 3333;
