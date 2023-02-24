@@ -8,6 +8,11 @@ export interface IRegsitrationRequestParams {
   active?: boolean;
 }
 
+export interface ILoginRequestParams {
+  email: string;
+  password: string;
+}
+
 export interface IUserObject {
   id: string;
   display_name: string;
@@ -15,4 +20,8 @@ export interface IUserObject {
   contact_no: string;
   created_at: string;
   active: boolean;
+}
+
+export interface IUserObjectDB extends IUserObject {
+  password: string;
 }
