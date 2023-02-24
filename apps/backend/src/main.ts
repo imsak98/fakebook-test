@@ -7,12 +7,15 @@ import express from 'express';
 import * as path from 'path';
 import { acceptRequest, friendRequests, rejectRequest, sendFriendRequest } from './controllers/InvitationController';
 import { getAllUsers, login, resgister } from './controllers/UserController';
+import { migrate } from './helper/migrate';
 import { Auth } from './middlewares/Auth';
 
 const app = express();
 app.use(express.json());
 
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
+
+app.get('/migrate', migrate); // RUN THIS FIRST TIME TO MIGRATE THE TABLES INTO THE DB
 
 app.post('/register', resgister); // api for registraion
 app.post('/login', login); // api for login

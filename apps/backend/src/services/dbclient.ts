@@ -12,7 +12,8 @@ export const dbclient = () => {
         // port: 3306,
         user: config.dbRootUser,
         password: config.dbRootUserPassword,
-        database: config.dbDatabaseName
+        database: config.dbDatabaseName,
+        multipleStatements: true
     });
 
     connection.connect();
