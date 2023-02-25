@@ -28,7 +28,7 @@ export const AllUsersView = () => {
         getAllUsers()
     }, [user?.accessToken])
     
-    console.log(allUsersList)
+    // console.log(allUsersList)
 
     return (
         // <div>
