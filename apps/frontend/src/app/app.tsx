@@ -1,15 +1,12 @@
+import { NotificationContext } from './components/contexts/NotificationContext';
+import Router from './Router';
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import styles from './app.module.css';
-
-import NxWelcome from './nx-welcome';
-
 export function App() {
   return (
-    <>
-      <NxWelcome title="frontend" />
-
-      <div />
-    </>
+    <NotificationContext>
+      <Router />
+    </NotificationContext>
   );
 }
 
