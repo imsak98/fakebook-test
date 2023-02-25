@@ -22,6 +22,17 @@ export interface IUserObject {
   active: boolean;
 }
 
+export interface IRequestListObject {
+  request_id: string;
+  user_id: string;
+  request_status: InvitationStatus;
+  name: string;
+  display_name: string;
+  email: string;
+  contact_no: string;
+  requested_at: string;
+}
+
 export interface IUserObjectDB extends IUserObject {
   password: string;
 }
