@@ -12,7 +12,7 @@ export const getAllUsers = async (req: Request, res: Response) => {
 
         if(rows) {
             const users: IUserObject[] = rows as Array<IUserObject>
-            console.log(users)
+            // console.log(users)
             return res.send({users: users});
         }
     });
