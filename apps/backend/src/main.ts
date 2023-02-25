@@ -6,7 +6,7 @@
 import express from 'express';
 import * as path from 'path';
 import { acceptRequest, friendRequests, rejectRequest, sendFriendRequest } from './controllers/InvitationController';
-import { getAllUsers, login, resgister } from './controllers/UserController';
+import { getAllUsers, getAllUsersFriends, login, resgister } from './controllers/UserController';
 import { migrate } from './helper/migrate';
 import { Auth } from './middlewares/Auth';
 import cors from 'cors';
@@ -32,6 +32,7 @@ app.post('/friendRequests', Auth, friendRequests); // api for sending friend req
 app.post('/sendFriendRequest', Auth, sendFriendRequest); // api for sending friend request to the user
 app.post('/acceptFriendRequest', Auth, acceptRequest); // api for accepting friend request to the user
 app.post('/rejectFriendRequest', Auth, rejectRequest); // api for rejecting friend request to the user
+app.post('/getAllUsersFriends', Auth, getAllUsersFriends); // api for rejecting friend request to the user
 
 
 const port = process.env.PORT || 3333;
