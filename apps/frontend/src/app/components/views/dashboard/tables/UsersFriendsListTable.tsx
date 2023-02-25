@@ -1,15 +1,15 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
-import { IRequestListObject } from "../../../../helpers/types";
+import { IUserObject } from "../../../../helpers/types";
 
-interface IFriendRequestTable {
-    requestList: IRequestListObject[] | undefined
+interface IUserTableProps {
+    usersFriendsList: IUserObject[] | undefined
 }
 
-export const FriendRequestTable:FC<IFriendRequestTable> = ( {requestList}) => {
+export const UsersFriendsListTable:FC<IUserTableProps> = ( {usersFriendsList}) => {
 //   const [selectedRow, setSelectedRow] = useState(null);
 
-  const handleRowClick = (row: IRequestListObject) => {
+  const handleRowClick = (row: IUserObject) => {
     // setSelectedRow(row.id);
   };
 
@@ -22,14 +22,14 @@ export const FriendRequestTable:FC<IFriendRequestTable> = ( {requestList}) => {
             <TableCell>Name</TableCell>
             <TableCell>Email</TableCell>
             <TableCell>Contact No</TableCell>
-            <TableCell>Requested On</TableCell>
+            <TableCell>Joind On</TableCell>
             <TableCell>Action</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {requestList?.map((row) => (
+          {usersFriendsList?.map((row) => (
             <TableRow
-              key={row.request_id}
+              key={row.id}
               onClick={() => handleRowClick(row)}
             //   selected={selectedRow === row.id}
               hover
@@ -38,7 +38,7 @@ export const FriendRequestTable:FC<IFriendRequestTable> = ( {requestList}) => {
               <TableCell>{row.display_name}</TableCell>
               <TableCell>{row.email}</TableCell>
               <TableCell>{row.contact_no}</TableCell>
-              <TableCell>{new Date(row.requested_at).toLocaleDateString("en-GB")}</TableCell>
+              <TableCell>{new Date(row.created_at).toLocaleDateString("en-GB")}</TableCell>
               <TableCell>  </TableCell>
             </TableRow>
           ))}
