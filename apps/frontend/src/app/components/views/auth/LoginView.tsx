@@ -10,10 +10,11 @@ import {
   Typography,
 } from '@mui/material';
 import { type } from 'os';
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { config } from '../../../helpers/config';
 import { ILoginRequestParams } from '../../../helpers/types';
+import AuthContext from '../../contexts/AuthContext';
 import { useNotificationContext } from '../../contexts/NotificationContext';
 
 export const LoginView = () => {
@@ -23,7 +24,16 @@ export const LoginView = () => {
 
   const { notify } = useNotificationContext();
   const navigate = useNavigate();
-
+  const { user, setUser } = useContext(AuthContext)
+console.log(user)
+useEffect(() => {
+    console.log(user)
+    if(user){
+      navigate('/dashboard');
+    }
+  
+  }, [navigate, user])
+  
   const handleSubmit = async () => {
     if (email && password) {
       const loginReqParams: ILoginRequestParams = {
@@ -39,11 +49,20 @@ export const LoginView = () => {
       });
       if (data.status === 200) {
         const res = await data.json();
+        console.log(res)
+        setUser({
+          id: res.user.id,
+          accessToken: res.token,
+          email: res.user.email,
+          name: res.user.name
+        })
+        localStorage.setItem('email', res.user.email)
+        localStorage.setItem('password', res.user.password)
         notify({
           message: res.message,
           type: 'success',
         });
-        navigate('/dashboard');
+        // navigate('/dashboard');
       }
       if (data.status === 401) {
         const err = await data.json();
