@@ -23,6 +23,8 @@ Run `npm i`
 
 Run `yarn backend:serve` if you have yarn installed OR `npx nx serve backend` for a dev server.
 
+Run `yarn frontend:serve` if you have yarn installed OR `npx nx serve frontend` for a dev server.
+
 ## Migrations 
 goto http://localhost:3333/migrate first time to migrate all the schemas to the db 
 
